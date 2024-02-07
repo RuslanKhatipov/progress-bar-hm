@@ -7,9 +7,10 @@ export default function CardsImage() {
   return (
     <div>
       <Container>
-        <Row>
-          <Col>1 of 2</Col>
-          <Col>2 of 2</Col>
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <p>Привет! Это корпоративный портал ООО “Высокая Гора”. Чтобы получить доступ к сайту - обратись в департамент HR.</p>
+          </Col>
         </Row>
       </Container>
     </div>
