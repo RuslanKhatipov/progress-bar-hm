@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   // const initState = { hello: 'world' };
-  res.render('IndexPage');
+  res.render('UsersPage');
 });
 
 export default router;
