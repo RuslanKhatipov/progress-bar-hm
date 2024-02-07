@@ -7,4 +7,6 @@ router.get('/', (req, res) => {
   res.render('IndexPage', initState);
 });
 
+
+
 export default router;
