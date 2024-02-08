@@ -5,10 +5,12 @@ import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import jsxRender from './utils/jsxRender';
 import indexRouter from './routes/render/indexRouter';
-import apiRouter from './routes/api/apiRouter';
 import resLocals from './middlewares/resLocals';
 import usersRouter from './routes/render/usersRouter';
 import newlistRouter from './routes/render/newlistRouter';
+import apiAuthRouter from './routes/api/apiAuthRouter';
+// import checkNoAuth from './middlewares/checkAuth';
+import authRouter from './routes/render/authRouter';
 import newlistRouterByPos from './routes/render/newPosListRouter';
 
 const PORT = process.env.PORT || 3000;
@@ -25,8 +27,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(resLocals);
 
+app.use('/api/auth', apiAuthRouter);
+app.use('/auth', authRouter);
 app.use('/', indexRouter);
-app.use('/api', apiRouter);
 app.use('/users', usersRouter);
 app.use('/newlist', newlistRouter);
 app.use('/newlistbypos', newlistRouterByPos);
