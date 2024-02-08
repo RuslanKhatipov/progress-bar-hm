@@ -29,7 +29,7 @@ export default function RegisterUserPage() {
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Имя</Form.Label>
-        <Form.Control value={formData.username} onChange={handleChange} type="text" name="name" placeholder="Name" />
+        <Form.Control value={formData.username} onChange={handleChange} type="text" name="username" placeholder="Name" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">

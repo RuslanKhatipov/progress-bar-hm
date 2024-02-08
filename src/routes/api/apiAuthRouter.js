@@ -7,8 +7,8 @@ import cookieConfig from '../../config/cookiesConfig';
 const router = Router();
 
 router.post('/signup', async (req, res) => {
-  const { email, name, password } = req.body;
-  if (!email || !name || !password) {
+  const { email, username, password } = req.body;
+  if (!email || !username || !password) {
     return res.status(400).json({
       message: 'Please provide email, name and password',
     });
@@ -16,15 +16,15 @@ router.post('/signup', async (req, res) => {
   const hashPass = await bcrypt.hash(password, 10);
   const [newUser, created] = await User.findOrCreate({
     where: { email },
-    defaults: { name, hashpass: hashPass },
+    defaults: { username, password: hashPass },
   });
   if (!created) {
-    return res.status(400).json({
+    return res.status(403).json({
       message: 'User already exists',
     });
   }
   const user = {
-    id: newUser.id, name: newUser.name, email: newUser.email,
+    id: newUser.id, username: newUser.username, email: newUser.email,
   };
   const { accessToken, refreshToken } = generateTokens({ user });
   res

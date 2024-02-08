@@ -9,7 +9,7 @@ import resLocals from './middlewares/resLocals';
 import usersRouter from './routes/render/usersRouter';
 import listRouter from './routes/render/listRouter';
 import apiAuthRouter from './routes/api/apiAuthRouter';
-import checkNoAuth from './middlewares/checkAuth';
+// import checkNoAuth from './middlewares/checkAuth';
 import authRouter from './routes/render/authRouter';
 
 const PORT = process.env.PORT || 3000;
@@ -27,7 +27,7 @@ app.use(cookieParser());
 app.use(resLocals);
 
 app.use('/api/auth', apiAuthRouter);
-app.use('/auth', checkNoAuth, authRouter);
+app.use('/auth', authRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/list', listRouter);
