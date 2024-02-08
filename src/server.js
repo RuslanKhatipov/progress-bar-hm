@@ -5,12 +5,16 @@ import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import jsxRender from './utils/jsxRender';
 import indexRouter from './routes/render/indexRouter';
-import apiRouter from './routes/api/apiRouter';
 import listsRouter from './routes/render/listsRouter';
 import apiListsRouter from './routes/api/apiListsRouter';
 import resLocals from './middlewares/resLocals';
 import usersRouter from './routes/render/usersRouter';
-import listRouter from './routes/render/listRouter';
+import newlistRouter from './routes/render/newlistRouter';
+import apiAuthRouter from './routes/api/apiAuthRouter';
+// import checkNoAuth from './middlewares/checkAuth';
+import authRouter from './routes/render/authRouter';
+// import apiUserRouter from './routes/api/apiUserRouter';
+import newlistRouterByPos from './routes/render/newPosListRouter';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -26,10 +30,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(resLocals);
 
+app.use('/api/auth', apiAuthRouter);
+app.use('/auth', authRouter);
 app.use('/', indexRouter);
-app.use('/api', apiRouter);
 app.use('/users', usersRouter);
-app.use('/list', listRouter);
+app.use('/newlist', newlistRouter);
+app.use('/newlistbypos', newlistRouterByPos);
 app.use('/lists', listsRouter);
 app.use('/api/lists', apiListsRouter);
 
