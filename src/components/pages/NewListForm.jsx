@@ -1,7 +1,11 @@
 import React from 'react';
 
-export default function NewListForm() {
+export default function NewListForm({ questions }) {
   return (
-    <div>NewListForm</div>
+    <>
+      {questions.map((question) => (
+        <div key={question.id}>{question.question}</div>
+      ))}
+    </>
   );
 }
