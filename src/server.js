@@ -6,6 +6,8 @@ import 'dotenv/config';
 import jsxRender from './utils/jsxRender';
 import indexRouter from './routes/render/indexRouter';
 import apiRouter from './routes/api/apiRouter';
+import listsRouter from './routes/render/listsRouter';
+import apiListsRouter from './routes/api/apiListsRouter';
 import resLocals from './middlewares/resLocals';
 
 const PORT = process.env.PORT || 3000;
@@ -24,5 +26,7 @@ app.use(resLocals);
 
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
+app.use('/lists', listsRouter);
+app.use('/api/lists', apiListsRouter);
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
