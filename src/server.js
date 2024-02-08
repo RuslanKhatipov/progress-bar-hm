@@ -30,7 +30,6 @@ app.use(resLocals);
 app.use('/api/auth', apiAuthRouter);
 app.use('/auth', authRouter);
 app.use('/', indexRouter);
-// app.use('/api/users', apiUserRouter);
 app.use('/users', usersRouter);
 app.use('/list', listRouter);
 
