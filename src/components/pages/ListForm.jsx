@@ -2,10 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import { Col } from 'react-bootstrap';
 
 export default function ListForm() {
   return (
-    <>
+    <Col>
       <h4>
         Привет,
         {' '}
@@ -29,6 +30,6 @@ export default function ListForm() {
           label="Наставник выдал мне пропуск"
         />
       </Form>
-    </>
+    </Col>
   );
 }
