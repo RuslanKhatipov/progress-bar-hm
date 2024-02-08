@@ -32,7 +32,7 @@ export default function NavBar({ user }) {
           <Nav.Link href="/auth/signup">Зарегистрировать HR</Nav.Link>
           <Nav.Link href="/auth/login">Войти</Nav.Link>
           <Nav.Link as={Button} onClick={logoutHandler}>Выйти</Nav.Link>
-          <Nav.Link href="/auth/changePassword">Изменить пароль </Nav.Link>
+          <Nav.Link href="/auth/refresh">Изменить пароль </Nav.Link>
           <Nav.Link href="/newlist">Новый лист адаптации</Nav.Link>
 
         </Nav>
