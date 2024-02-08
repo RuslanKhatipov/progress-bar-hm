@@ -7,10 +7,12 @@ import jsxRender from './utils/jsxRender';
 import indexRouter from './routes/render/indexRouter';
 import resLocals from './middlewares/resLocals';
 import usersRouter from './routes/render/usersRouter';
-import listRouter from './routes/render/listRouter';
+import newlistRouter from './routes/render/newlistRouter';
 import apiAuthRouter from './routes/api/apiAuthRouter';
 // import checkNoAuth from './middlewares/checkAuth';
 import authRouter from './routes/render/authRouter';
+// import apiUserRouter from './routes/api/apiUserRouter';
+import newlistRouterByPos from './routes/render/newPosListRouter';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -30,6 +32,7 @@ app.use('/api/auth', apiAuthRouter);
 app.use('/auth', authRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/list', listRouter);
+app.use('/newlist', newlistRouter);
+app.use('/newlistbypos', newlistRouterByPos);
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
