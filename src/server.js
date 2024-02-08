@@ -11,6 +11,7 @@ import listRouter from './routes/render/listRouter';
 import apiAuthRouter from './routes/api/apiAuthRouter';
 // import checkNoAuth from './middlewares/checkAuth';
 import authRouter from './routes/render/authRouter';
+// import apiUserRouter from './routes/api/apiUserRouter';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
