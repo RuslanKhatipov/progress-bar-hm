@@ -5,6 +5,8 @@ import LoginPage from './pages/LoginPage';
 import RegisterUserPage from './pages/RegisterUserPage';
 import NewListForm from './pages/NewListForm';
 import RefreshPage from './pages/RefreshPage';
+import MyListPage from './pages/MyListPage';
+import AllListsPage from './pages/AllListsPage';
 
 const components = {
   IndexPage,
@@ -14,6 +16,8 @@ const components = {
   RegisterUserPage,
   NewListForm,
   RefreshPage,
+  MyListPage,
+  AllListsPage,
 };
 
 export default components;

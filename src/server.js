@@ -5,6 +5,8 @@ import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import jsxRender from './utils/jsxRender';
 import indexRouter from './routes/render/indexRouter';
+import listsRouter from './routes/render/listsRouter';
+import apiListsRouter from './routes/api/apiListsRouter';
 import resLocals from './middlewares/resLocals';
 import usersRouter from './routes/render/usersRouter';
 import newlistRouter from './routes/render/newlistRouter';
@@ -34,5 +36,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/newlist', newlistRouter);
 app.use('/newlistbypos', newlistRouterByPos);
+app.use('/lists', listsRouter);
+app.use('/api/lists', apiListsRouter);
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
