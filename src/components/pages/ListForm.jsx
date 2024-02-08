@@ -1,35 +1,25 @@
 import React from 'react';
-import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { Col } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
-export default function ListForm() {
+export default function ListForm({ positions }) {
   return (
-    <Col>
-      <h4>
-        Привет,
+    <>
+      <Form.Label style={{ marginLeft: '100px' }}>Создать лист адаптации для нового сотрудника</Form.Label>
+      <InputGroup style={{ marginLeft: '100px', width: '350px' }}>
+        <Form.Select size="lg" className="w-auto">
+          {positions.map((position, index) => (<option key={index}>{position.position}</option>))}
+        </Form.Select>
+        <div style={{ marginTop: '10px' }}>
+          <a href="/newlistbypos">
+            <Button variant="primary">Создать лист адаптации</Button>
+          </a>
+        </div>
+
         {' '}
-        {/* {list.firstname, list.lastname} */}
-        {' '}
-        И добро пожаловать в команду Высокогорья!
-        Впереди нас ждет интересное путешествие в мир нашей компании,
-        и самым главным проводником будет-
-        {' '}
-        {/* {user.username} */}
-      </h4>
-      <p>
-        Мы подготовили для тебя чек-лист на первый день. Процесс выполнения будет сохраняться,
-        поэтому ты можешь закрывать пункты в удобном для тебя порядке.
-      </p>
-      <h6>Нужно подготовить твое рабочее место:</h6>
-      <Form>
-        <Form.Check // prettier-ignore
-          type="switch"
-          id="custom-switch"
-          label="Наставник выдал мне пропуск"
-        />
-      </Form>
-    </Col>
+      </InputGroup>
+    </>
   );
 }
