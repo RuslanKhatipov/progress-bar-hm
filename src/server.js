@@ -11,6 +11,7 @@ import newlistRouter from './routes/render/newlistRouter';
 import apiAuthRouter from './routes/api/apiAuthRouter';
 // import checkNoAuth from './middlewares/checkAuth';
 import authRouter from './routes/render/authRouter';
+// import apiUserRouter from './routes/api/apiUserRouter';
 import newlistRouterByPos from './routes/render/newPosListRouter';
 
 const PORT = process.env.PORT || 3000;
