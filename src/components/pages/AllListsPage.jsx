@@ -10,23 +10,22 @@ export default function AllListsPage({ lists }) {
       method: 'DELETE',
     });
     if (res.status === 200) {
-      // setCurLists(curLists.filter((list) => list.id !== id));
       setCurLists((prev) => prev.filter((list) => list.id !== id));
     }
   };
-  const submitChangeHandler = async (e,id) => {
-    e.preventDefault();
-    const res = await axios(`/api/lists/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify(data),
-    });
-    if (res.status === 200) {
-      
-    }
-  };
+  // const submitChangeHandler = async (e, id) => {
+  //   e.preventDefault();
+  //   const res = await axios(`/api/lists/${id}`, {
+  //     method: 'PATCH',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //     },
+  //     body: JSON.stringify(data),
+  //   });
+  //   if (res.status === 200) {
+
+  //   }
+  // };
   return (
     <ul className="list-group">
       {curLists.map((list) => (

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOMClient from 'react-dom/client';
-import { render } from 'react-dom';
+// import { render } from 'react-dom';
 import App from './App';
 import components from './components';
 
@@ -15,4 +15,4 @@ ReactDOMClient.hydrateRoot(
 
 delete window.initState;
 
-render(<App />, document.getElementById('root'));
+// render(<App />, document.getElementById('root'));

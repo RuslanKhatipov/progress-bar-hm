@@ -1,22 +1,15 @@
 import express from 'express';
-import { List, User } from '../../../db/models';
+import { List, User, Anket } from '../../../db/models';
 
 const router = express.Router();
 
-// const lists = [{ id: 1, title: 'Подготовить презентацию' },
-//   { id: 2, title: 'Сделать покупки' },
-//   { id: 3, title: 'Прочитать новую книгу' },
-//   { id: 4, title: 'Посмотреть новый фильм' },
-//   { id: 5, title: 'Заняться спортом' }];
-
 router.get('/', async (req, res) => {
-  const lists = await List.findAll();
-  const initState = { lists };
-  res.render('AllListsPage', initState);
-  // res.render('AllListsPage', { lists });
+  const lists = await List.findAll({ include: [User, Anket] });
+  res.render('AllListsPage', { lists });
 });
 
 router.get('/myList', async (req, res) => {
+  console.log(res.locals);
   try {
     const myList = await User.findOne({
       where: { id: res.locals.user.userId },
