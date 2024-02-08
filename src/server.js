@@ -9,6 +9,7 @@ import apiRouter from './routes/api/apiRouter';
 import resLocals from './middlewares/resLocals';
 import usersRouter from './routes/render/usersRouter';
 import listRouter from './routes/render/listRouter';
+// import apiUserRouter from './routes/api/apiUserRouter';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -26,6 +27,7 @@ app.use(resLocals);
 
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
+// app.use('/api/users', apiUserRouter);
 app.use('/users', usersRouter);
 app.use('/list', listRouter);
 
