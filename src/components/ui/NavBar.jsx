@@ -19,10 +19,11 @@ export default function NavBar() {
         </Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href="/users">Пользователи</Nav.Link>
-          <Nav.Link href="#features">Все листы</Nav.Link>
-          <Nav.Link href="#pricing">Мои листы</Nav.Link>
-          <Nav.Link href="#pricing">Выйти</Nav.Link>
-          <Nav.Link href="#pricing">Зарегистрировать пользователя</Nav.Link>
+          <Nav.Link href="/lists">Листы адаптации</Nav.Link>
+          <Nav.Link href="/auth/signup">Зарегистрировать HR</Nav.Link>
+          <Nav.Link href="/auth/login">Войти</Nav.Link>
+          <Nav.Link href="/auth/logout">Выйти</Nav.Link>
+          <Nav.Link href="/newlist">Новый лист адаптации</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
