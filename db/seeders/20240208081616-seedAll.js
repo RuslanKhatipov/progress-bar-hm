@@ -25,15 +25,14 @@ module.exports = {
     ], {});
     await queryInterface.bulkInsert('Ankets', [
       {
-        name: 'Иван Иванов', email: 'ivan@ivan', posId: 1, url: 'localhost3000/list/1',
+        name: 'Иван Иванов', email: 'ivan@ivan', posId: 1, url: 'tretert',
       },
       {
-        name: 'Петр Петров', email: 'petr@petr', posId: 2, url: 'localhost3000/list/2',
+        name: 'Петр Петров', email: 'petr@petr', posId: 2, url: 'fgsderer',
       },
       {
-        name: 'Сидор Сидоров', email: 'sidor@sidor', posId: 3, url: 'localhost3000/list/3',
+        name: 'Сидор Сидоров', email: 'sidor@sidor', posId: 3, url: 'reseresrser',
       },
-
     ], {});
     await queryInterface.bulkInsert('Questions', [
       {

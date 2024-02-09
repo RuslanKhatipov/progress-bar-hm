@@ -8,6 +8,7 @@ import axios from 'axios';
 
 export default function UsersPage({ users, ankets, positions }) {
   const [ankArr, setAnketsArr] = useState(ankets);
+  const [usersArr, setUsers] = useState(users);
   const userHr = users.filter((user) => !user.isAdmin);
   // const [selectPosition, setSelectedPosition] = useState('');
   console.log(users);
@@ -20,6 +21,8 @@ export default function UsersPage({ users, ankets, positions }) {
       });
     // setSelectedPosition(selectedPositionId);
   };
+
+
 
   const now = 0;
   return (
@@ -78,9 +81,9 @@ export default function UsersPage({ users, ankets, positions }) {
                 <th>Имя</th>
                 <th>email</th>
                 <th>Роль</th>
-                <th>
+                {/* <th>
                   <ProgressBar now={now} label={`${now}%`} visuallyHidden />
-                </th>
+                </th> */}
               </tr>
             </thead>
             <tbody>
@@ -89,9 +92,23 @@ export default function UsersPage({ users, ankets, positions }) {
                   <td>{user.id}</td>
                   <td>{user.username}</td>
                   <td>{user.email}</td>
-                  {users.map((el) => (
-                    <td>{el.isAdmin ? el.isAdmin : 'false'}</td>
-                  ))}
+                  {/* <td>{user.isAdmin ? user.isAdmin : 'false'}</td> */}
+                  <td>
+
+                    <Form.Select onChange={(e) => handlePositionChange(e, anket.id)} value={anket.posId}>
+
+                      {positions.map((elem) => (
+                        <option
+                          defaultValue={anket.posId}
+                          key={elem.id}
+                          value={elem.id}
+                        >
+                          {elem.position}
+                        </option>
+                      ))}
+
+                    </Form.Select>
+                  </td>
                 </tr>
               ))}
             </tbody>

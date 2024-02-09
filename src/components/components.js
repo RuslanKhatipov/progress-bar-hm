@@ -8,6 +8,7 @@ import RefreshPage from './pages/RefreshPage';
 import MyListPage from './pages/MyListPage';
 import AllListsPage from './pages/AllListsPage';
 import AnketPage from './pages/AnketPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 const components = {
   IndexPage,
@@ -20,6 +21,7 @@ const components = {
   MyListPage,
   AllListsPage,
   AnketPage,
+  NotFoundPage,
 };
 
 export default components;

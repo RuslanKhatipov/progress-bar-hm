@@ -1,5 +1,5 @@
 import express from 'express';
-import { List } from '../../../db/models';
+import { List, User, Anket } from '../../../db/models';
 
 const apiListsRouter = express.Router();
 
@@ -24,6 +24,14 @@ apiListsRouter.patch('/:id', async (req, res) => {
   } catch {
     res.sendStatus(400);
   }
+});
+
+apiListsRouter.get('/:id', async (req, res) => {
+  const myList = await List.findAll({
+    where: { userId: res.locals.user.id },
+    include: [User, Anket],
+  });
+  res.json({ myList });
 });
 
 export default apiListsRouter;
