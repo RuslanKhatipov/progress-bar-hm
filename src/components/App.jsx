@@ -5,6 +5,8 @@ export default function App({ children, user }) {
   return (
     <>
       <NavBar user={user} />
+
+      
       <div>{children}</div>
     </>
   );
