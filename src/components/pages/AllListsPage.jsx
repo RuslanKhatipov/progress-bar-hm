@@ -4,26 +4,31 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import List from '../ui/List';
 
-export default function AllListsPage({ lists }, { myList }) {
+export default function AllListsPage({ lists, user }) {
   const [curLists, setCurLists] = useState(lists || []);
-  const [myCurList, setMyCurList] = useState(myList || []);
+  const [myCurList, setMyCurList] = useState([]);
   // const [input,setInput] = useState({ myList: '' });
 
+  const switchHandler = async (userId) => {
+    try {
+      const response = await axios.get(`/api/lists/${userId}`);
+      setMyCurList(response.data.myList);
+    } catch (error) {
+      console.error('Error fetching my list:', error);
+    }
+  };
+
   const deleteHandler = async (id) => {
-    const res = await axios(`/api/lists/${id}`, {
-      method: 'DELETE',
-    });
+    const res = await axios.delete(`/api/lists/${id}`);
     if (res.status === 200) {
       setCurLists((prev) => prev.filter((list) => list.id !== id));
     }
   };
 
   const myDeleteHandler = async (id) => {
-    const res = await axios(`/api/lists/${id}`, {
-      method: 'DELETE',
-    });
+    const res = await axios.delete(`/api/lists/${id}`);
     if (res.status === 200) {
-      setMyCurLists((prev) => prev.filter((el) => el.id !== id));
+      setMyCurList((prev) => prev.filter((el) => el.id !== id));
     }
   };
 
@@ -32,20 +37,29 @@ export default function AllListsPage({ lists }, { myList }) {
       defaultActiveKey="profile"
       id="uncontrolled-tab-example"
       className="mb-3"
+      onSelect={(key) => key === 'My List' && switchHandler(user.id)}
     >
       <Tab eventKey="All Lists" title="All Lists">
         <ul className="list-group">
           {curLists.map((list) => (
-            <List key={list.id} deleteHandler={deleteHandler} list={list} />
+            <List
+              key={list.id}
+              deleteHandler={deleteHandler}
+              list={list}
+            />
           ))}
         </ul>
       </Tab>
       <Tab eventKey="My List" title="My List">
-        {/* <ul className="list-group">
-          {myCurLists.map((el) => (
-            <List key={el.id} deleteHandler={deleteHandler} el={el} />
+        <ul className="list-group">
+          {myCurList.map((el) => (
+            <List
+              key={el.id}
+              deleteHandler={myDeleteHandler}
+              list={el}
+            />
           ))}
-        </ul> */}
+        </ul>
       </Tab>
     </Tabs>
   );
