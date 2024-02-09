@@ -4,13 +4,21 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 export default function CardsImage() {
+  const imageURL = 'https://cdn.tripster.ru/thumbs2/f5a8c1fe-b128-11ed-9e63-2e5ef03bee8d.1220x600.jpeg';
+
+  const backgroundStyle = {
+    backgroundImage: `url(${imageURL})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    minHeight: '100vh',
+  };
+
   return (
-    <div>
+    <div style={backgroundStyle}>
       <Container>
         <Row className="justify-content-md-center">
-          <Col md="auto">
-            <p>Привет! Это корпоративный портал ООО “Высокая Гора”. Чтобы получить доступ к сайту - обратись в департамент HR.</p>
-          </Col>
+          <Col md="auto" />
         </Row>
       </Container>
     </div>

@@ -3,10 +3,11 @@ import bcrypt from 'bcrypt';
 import { User } from '../../../db/models';
 import generateTokens from '../../utils/generateTokens';
 import cookieConfig from '../../config/cookiesConfig';
+import isAdmin from '../../middlewares/isAdminAuth';
 
 const router = Router();
 
-router.post('/signup', async (req, res) => {
+router.post('/signup', isAdmin, async (req, res) => {
   const {
     username, email, password,
   } = req.body;
@@ -52,7 +53,7 @@ router.get('/logout', (req, res) => {
   res.clearCookie('accessToken').clearCookie('refreshToken').sendStatus(200).redirect('/');
 });
 
-router.patch('/refresh', async (req, res) => {
+router.patch('/refresh', isAdmin, async (req, res) => {
   const { email, newPassword } = req.body;
   if (!(email && newPassword)) {
     return res.status(400).json({ message: 'Email and new password are required' });
