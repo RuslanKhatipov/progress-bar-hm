@@ -31,7 +31,21 @@ router.post('/addanket', async (req, res) => {
     await Anket.create({
       name, email, url, posId,
     });
-    res.sendStatus(201);
+    res.redirect('/');
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.delete('/:questionId', async (req, res) => { // Заменяем questId на questionId
+  try {
+    const { questionId } = req.params; // Заменяем questId на questionId
+    await Question.destroy({
+      where: {
+        id: questionId, // Исправляем questId на questionId
+      },
+    });
+    res.sendStatus(200); // Возвращаем статус 200 для успешного удаления
   } catch (error) {
     res.status(500).send(error);
   }

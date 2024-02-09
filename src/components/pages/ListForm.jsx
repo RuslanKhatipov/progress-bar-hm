@@ -16,7 +16,6 @@ export default function ListForm({ positions }) {
     if (selectedPosition) {
       window.location.href = `/newlistbypos/${selectedPosition}`; // Перенаправляем на страницу с выбранной должностью
     } else {
-      // Обработка случая, когда не выбрана должность
       console.log('Пожалуйста, выберите должность');
     }
   };

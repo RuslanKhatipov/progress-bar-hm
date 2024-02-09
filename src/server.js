@@ -15,6 +15,7 @@ import authRouter from './routes/render/authRouter';
 import apiUsersRouter from './routes/api/apiUsersRouter';
 import newlistRouterByPos from './routes/render/newPosListRouter';
 import apiAdoptListRouter from './routes/api/apiAdoptListRouter';
+import anketRouter from './routes/render/anketRouter';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -40,6 +41,7 @@ app.use('/newlistbypos', newlistRouterByPos);
 app.use('/api/adaptlist', apiAdoptListRouter);
 app.use('/lists', listsRouter);
 app.use('/api/lists', apiListsRouter);
+app.use('/anket', anketRouter);
 app.use('*', (req, res) => {
   res.status(404).redirect('https://www.blackhillsinfosec.com/wp-content/uploads/2016/07/66619265.jpg');
 });

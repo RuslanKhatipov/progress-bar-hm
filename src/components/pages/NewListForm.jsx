@@ -37,6 +37,16 @@ export default function NewListForm({ questions, posId }) {
     }
   };
 
+  const deleteHandler = async (questionId) => {
+    const response = await fetch(`/api/adaptlist/${questionId}`, { method: 'DELETE' });
+    if (response.status === 200) {
+      setUpdatedQuestions((prev) => prev.filter((quest) => quest.id !== questionId));
+    } else if (response.status === 500) {
+      const message = await response.json();
+      console.log(message.name);
+    }
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -60,6 +70,9 @@ export default function NewListForm({ questions, posId }) {
                   value={question.question}
                   aria-label="Disabled input example"
                 />
+                <button onClick={() => deleteHandler(question.id)} type="button" className="btn btn-danger">
+                  Удалить
+                </button>
               </Col>
             </Row>
           </div>
