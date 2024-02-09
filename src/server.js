@@ -9,7 +9,6 @@ import resLocals from './middlewares/resLocals';
 import usersRouter from './routes/render/usersRouter';
 import newlistRouter from './routes/render/newlistRouter';
 import apiAuthRouter from './routes/api/apiAuthRouter';
-// import checkNoAuth from './middlewares/checkAuth';
 import authRouter from './routes/render/authRouter';
 // import apiUserRouter from './routes/api/apiUserRouter';
 import newlistRouterByPos from './routes/render/newPosListRouter';
@@ -34,5 +33,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/newlist', newlistRouter);
 app.use('/newlistbypos', newlistRouterByPos);
+app.use('*', (req, res) => {
+  res.status(404).redirect('https://www.blackhillsinfosec.com/wp-content/uploads/2016/07/66619265.jpg');
+});
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
