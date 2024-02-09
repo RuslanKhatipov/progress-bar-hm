@@ -15,6 +15,7 @@ import apiAuthRouter from './routes/api/apiAuthRouter';
 import authRouter from './routes/render/authRouter';
 // import apiUserRouter from './routes/api/apiUserRouter';
 import newlistRouterByPos from './routes/render/newPosListRouter';
+import apiAdoptListRouter from './routes/api/apiAdoptListRouter';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -36,6 +37,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/newlist', newlistRouter);
 app.use('/newlistbypos', newlistRouterByPos);
+app.use('/api/adaptlist', apiAdoptListRouter);
 app.use('/lists', listsRouter);
 app.use('/api/lists', apiListsRouter);
 

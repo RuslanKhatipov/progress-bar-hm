@@ -21,7 +21,6 @@ export default function ListForm({ positions }) {
     }
   };
 
-  
   return (
     <>
       <Form.Label style={{ marginLeft: '100px' }}>Создать лист адаптации для нового сотрудника</Form.Label>
