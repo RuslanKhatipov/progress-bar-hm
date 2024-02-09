@@ -13,7 +13,7 @@ import newlistRouter from './routes/render/newlistRouter';
 import apiAuthRouter from './routes/api/apiAuthRouter';
 // import checkNoAuth from './middlewares/checkAuth';
 import authRouter from './routes/render/authRouter';
-// import apiUserRouter from './routes/api/apiUserRouter';
+import apiUsersRouter from './routes/api/apiUsersRouter';
 import newlistRouterByPos from './routes/render/newPosListRouter';
 
 const PORT = process.env.PORT || 3000;
@@ -34,6 +34,7 @@ app.use('/api/auth', apiAuthRouter);
 app.use('/auth', authRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/users', apiUsersRouter);
 app.use('/newlist', newlistRouter);
 app.use('/newlistbypos', newlistRouterByPos);
 app.use('/lists', listsRouter);
