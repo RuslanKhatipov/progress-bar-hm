@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Form from 'react-bootstrap/Form';
+import axios from 'axios';
 
-export default function UsersPage({ users, ankets }) {
+export default function UsersPage({ users, ankets, positions }) {
+  const [ankArr, setAnketsArr] = useState(ankets);
   const userHr = users.filter((user) => !user.isAdmin);
-  console.log(ankets.position);
+  // const [selectPosition, setSelectedPosition] = useState('');
+  console.log(users);
+
+  const handlePositionChange = (event, anketId) => {
+    const selectedPositionId = event.target.value;
+    axios.patch('/api/users/posId', { anketId, posId: selectedPositionId })
+      .then(() => {
+        setAnketsArr((prev) => prev.map((el) => (el.id === anketId ? { ...el, posId: selectedPositionId } : el)));
+      });
+    // setSelectedPosition(selectedPositionId);
+  };
 
   const now = 0;
   return (
@@ -27,20 +39,27 @@ export default function UsersPage({ users, ankets }) {
                 <th>name</th>
                 <th>url</th>
                 <th>PosId</th>
-                {/* <th>
-                  <ProgressBar now={now} label={`${now}%`} visuallyHidden />
-                </th> */}
               </tr>
             </thead>
-            <tbody>
-              {ankets.map((anket) => (
-                <tr>
+            <tbody key={ankets.id}>
+              {ankArr.map((anket) => (
+                <tr key={anket.id}>
                   <td>{anket.id}</td>
                   <td>{anket.name}</td>
                   <td>{anket.url}</td>
                   <td>
-                    <Form.Select>
-                      <option>{anket.Position.position}</option>
+                    <Form.Select onChange={(e) => handlePositionChange(e, anket.id)} value={anket.posId}>
+
+                      {positions.map((elem) => (
+                        <option
+                          defaultValue={anket.posId}
+                          key={elem.id}
+                          value={elem.id}
+                        >
+                          {elem.position}
+                        </option>
+                      ))}
+
                     </Form.Select>
                   </td>
                 </tr>
@@ -56,7 +75,7 @@ export default function UsersPage({ users, ankets }) {
             <thead>
               <tr>
                 <th>#</th>
-                <th>name</th>
+                <th>Имя</th>
                 <th>email</th>
                 <th>Роль</th>
                 <th>
@@ -70,7 +89,9 @@ export default function UsersPage({ users, ankets }) {
                   <td>{user.id}</td>
                   <td>{user.username}</td>
                   <td>{user.email}</td>
-                  <td>{user.isAdmin}</td>
+                  {users.map((el) => (
+                    <td>{el.isAdmin ? el.isAdmin : 'false'}</td>
+                  ))}
                 </tr>
               ))}
             </tbody>
