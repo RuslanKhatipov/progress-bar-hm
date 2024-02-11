@@ -39,7 +39,7 @@ export default function AllListsPage({ lists, user }) {
       className="mb-3"
       onSelect={(key) => key === 'My List' && switchHandler(user.id)}
     >
-      <Tab eventKey="All Lists" title="All Lists">
+      <Tab eventKey="All Lists" title="Все листы адаптации">
         <ul className="list-group">
           {curLists.map((list) => (
             <List
@@ -50,7 +50,7 @@ export default function AllListsPage({ lists, user }) {
           ))}
         </ul>
       </Tab>
-      <Tab eventKey="My List" title="My List">
+      <Tab eventKey="My List" title="Мои листы адаптации">
         <ul className="list-group">
           {myCurList.map((el) => (
             <List

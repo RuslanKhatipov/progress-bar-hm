@@ -7,6 +7,7 @@ import NewListForm from './pages/NewListForm';
 import RefreshPage from './pages/RefreshPage';
 import MyListPage from './pages/MyListPage';
 import AllListsPage from './pages/AllListsPage';
+import AnketPage from './pages/AnketPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 const components = {
@@ -19,6 +20,7 @@ const components = {
   RefreshPage,
   MyListPage,
   AllListsPage,
+  AnketPage,
   NotFoundPage,
 };
 

@@ -14,7 +14,10 @@ router.get('/:posId', async (req, res) => {
         where: { id: posId },
       }],
     });
-    res.render('NewListForm', { questions });
+    const position = await Position.findOne({
+      where: { id: posId },
+    });
+    res.render('NewListForm', { questions, posId, position });
   } catch (error) {
     console.error('Error fetching questions:', error);
     res.status(500).send('Internal Server Error');

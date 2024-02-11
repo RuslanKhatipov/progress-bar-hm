@@ -22,8 +22,6 @@ export default function UsersPage({ users, ankets, positions }) {
     // setSelectedPosition(selectedPositionId);
   };
 
-
-
   const now = 0;
   return (
     <div>
@@ -49,7 +47,7 @@ export default function UsersPage({ users, ankets, positions }) {
                 <tr key={anket.id}>
                   <td>{anket.id}</td>
                   <td>{anket.name}</td>
-                  <td>{anket.url}</td>
+                  <td><a href={`http://localhost:3000/anket/${anket.url}`}>{`http://localhost:3000/anket/${anket.url}`}</a></td>
                   <td>
                     <Form.Select onChange={(e) => handlePositionChange(e, anket.id)} value={anket.posId}>
 
@@ -93,22 +91,7 @@ export default function UsersPage({ users, ankets, positions }) {
                   <td>{user.username}</td>
                   <td>{user.email}</td>
                   {/* <td>{user.isAdmin ? user.isAdmin : 'false'}</td> */}
-                  <td>
-
-                    <Form.Select onChange={(e) => handlePositionChange(e, anket.id)} value={anket.posId}>
-
-                      {positions.map((elem) => (
-                        <option
-                          defaultValue={anket.posId}
-                          key={elem.id}
-                          value={elem.id}
-                        >
-                          {elem.position}
-                        </option>
-                      ))}
-
-                    </Form.Select>
-                  </td>
+                  <td />
                 </tr>
               ))}
             </tbody>
