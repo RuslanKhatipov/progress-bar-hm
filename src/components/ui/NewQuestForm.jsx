@@ -27,7 +27,7 @@ export default function NewQuestForm({ posId, onQuestionAddition }) {
   };
 
   return (
-    <div className="container">
+    <div className="" style={{ width: '800px', marginLeft: '10px' }}>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="questionInput" className="form-label">
@@ -41,6 +41,7 @@ export default function NewQuestForm({ posId, onQuestionAddition }) {
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             placeholder="Введите вопрос..."
+
           />
           {errorMessage && <div className="text-danger mt-2">{errorMessage}</div>}
           {successMessage && <div className="text-success mt-2">{successMessage}</div>}

@@ -17,6 +17,7 @@ import newlistRouterByPos from './routes/render/newPosListRouter';
 import NotFoundRouter from './routes/render/NotFoundRouter';
 import apiAdoptListRouter from './routes/api/apiAdoptListRouter';
 import anketRouter from './routes/render/anketRouter';
+import apiAnketRouter from './routes/api/apiAnketRouter';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -43,6 +44,7 @@ app.use('/api/adaptlist', apiAdoptListRouter);
 app.use('/lists', listsRouter);
 app.use('/api/lists', apiListsRouter);
 app.use('/anket', anketRouter);
+app.use('/api/anket', apiAnketRouter);
 app.use('*', NotFoundRouter);
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));

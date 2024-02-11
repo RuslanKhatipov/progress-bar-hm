@@ -1,5 +1,7 @@
 import express from 'express';
-import { Answer, Question, Anket } from '../../../db/models';
+import {
+  Answer, Question, Anket, List,
+} from '../../../db/models';
 
 const router = express.Router();
 
@@ -28,24 +30,52 @@ router.post('/addanket', async (req, res) => {
     const {
       name, email, url, posId,
     } = req.body;
-    await Anket.create({
+    const newAnkket = await Anket.create({
       name, email, url, posId,
     });
-    res.redirect('/');
+    console.log(newAnkket.dataValues);
+    const newList = await List.create({
+      anketId: newAnkket.dataValues.id,
+      userId: res.locals.user.id,
+    });
+
+    const anketId = newAnkket.dataValues.id; // Получаем anketId
+
+    console.log(newList);
+    res.status(201).json({ anketId });
   } catch (error) {
     res.status(500).send(error);
   }
 });
 
-router.delete('/:questionId', async (req, res) => { // Заменяем questId на questionId
+router.post('/addanswers', async (req, res) => {
   try {
-    const { questionId } = req.params; // Заменяем questId на questionId
+    const { anketId, answers } = req.body;
+
+    // Создаем ответы для каждого вопроса
+    await Promise.all(answers.map(async (ans) => {
+      await Answer.create({
+        anketId,
+        questId: ans.questId,
+        answer: ans.answer,
+      });
+    }));
+
+    res.sendStatus(201);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.delete('/:questionId', async (req, res) => {
+  try {
+    const { questionId } = req.params;
     await Question.destroy({
       where: {
-        id: questionId, // Исправляем questId на questionId
+        id: questionId,
       },
     });
-    res.sendStatus(200); // Возвращаем статус 200 для успешного удаления
+    res.sendStatus(200);
   } catch (error) {
     res.status(500).send(error);
   }

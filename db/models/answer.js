@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Answer.belongsTo(models.Question, { foreignKey: 'questId' });
       Answer.belongsTo(models.Anket, { foreignKey: 'anketId' });
-     // Answer.hasMany(models.List, { foreignKey: 'answerId' });
     }
   }
   Answer.init({

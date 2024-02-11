@@ -1,21 +1,29 @@
 import express from 'express';
-import { Anket, Question } from '../../../db/models';
+import {
+  Anket, Question, List, User, Answer,
+} from '../../../db/models';
 
 const router = express.Router();
 
 router.get('/:url', async (req, res) => {
   try {
     const { url } = req.params;
-    // Используйте findOne с объектом параметров запроса
     const anket = await Anket.findOne({ where: { url } });
-
-    // Запрос к модели Question с использованием include для включения связанных моделей
     const questions = await Question.findAll({
-      where: { anketId: anket.id }, // Предполагается, что у модели Question есть поле anketId, которое связывает ее с моделью Anket
-      include: [{ model: Position }],
+      where: { posId: anket.posId },
     });
-
-    res.render('AnketPage', { anket, questions }); // Передача данных в шаблон
+    const list = await List.findOne({ where: { anketId: anket.id } });
+    const hruser = await User.findOne({ where: { id: list.userId } });
+    const answers = await Answer.findAll({
+      where: { anketId: anket.id },
+    });
+    res.render('AnketPage', {
+      anket, questions, list, hruser, answers,
+    });
+    // console.log('===========>>>>>>>', anket);
+    // console.log('===========>>>>>>>', questions);
+    // console.log('===========>>>>>>>', list);
+    // console.log('===========>>>>>>>', hruser);
   } catch (error) {
     console.error('Error fetching ankets and questions:', error);
     res.status(500).send('Internal Server Error');
